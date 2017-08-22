@@ -3,25 +3,27 @@ $("input").on("keyup", function(event) {
   if (event.which == 13) {
     $("#results").empty();
     userInput = $("input").val();
-    api = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + userInput + "&format=json";
+    api = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&exsentences=1&generator=search&gsrsearch=" + userInput + "&format=json";
     $.ajax({
       url: api,
       dataType: "jsonp",
       // jsonp: "jsoncallback",
       success:
       function processJson(json){
-        for (var i = 0; i < json.query.search.length; i++){
-          var title = json.query.search[i].title;
-          var snippet = json.query.search[i].snippet;
-          var urlLink = "https://en.wikipedia.org/?curid=" + json.query.search[i].pageid;
+        var pages = json.query.pages;
+        var pageIdKeys = Object.keys(pages)
+        for (var i = 0; i < pageIdKeys.length; i++){
+          var title = json.query.pages[pageIdKeys[i]].title;
+          var extract = json.query.pages[pageIdKeys[i]].extract;
+          var urlLink = "https://en.wikipedia.org/?curid=" + json.query.pages[pageIdKeys[i]].pageid;
           $("#results").append(
             "<a target='_blank' href=" + urlLink + ">" +
               "<div>" +
                 "<span id='title'>" + title + "</span><br>" +
-                "<span id='snippet'>" + snippet + "</span>" +
+                "<span id='snippet'>" + extract + "</span>" +
               "</div>" +
             "</a>"
-          );
+          );//end append
         }//end for
       },//end processJson
       error:
@@ -32,7 +34,6 @@ $("input").on("keyup", function(event) {
   }//end if
 
   var inputVal = $("input").val();
-  console.log(inputVal);
   if (inputVal == "") {
     $("#results").empty();
   }
