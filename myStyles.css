@@ -1,3 +1,8 @@
+body {
+  background: #03240C;
+  color: white;
+}
+
 #header {
   margin-top: 40px;
 }
@@ -23,6 +28,12 @@
   padding: 40px;
 }
 
+#results img {
+  margin-top: 20px;
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
 #results #title {
   text-decoration: underline;
   font-weight: bold;
@@ -35,4 +46,8 @@
 
 #results a:hover {
     text-decoration: none;
+}
+
+#results div:hover {
+  border: 5px solid #1D953C;
 }
