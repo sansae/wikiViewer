@@ -1,3 +1,38 @@
+#header {
+  margin-top: 40px;
+}
+
+#header > input, p {
+  margin-top: 20px;
+}
+
 #header, input {
-  text-align: center
+  text-align: center;
+}
+
+#content {
+  margin-left: 150px;
+  margin-right:150px;
+}
+
+#results div {
+  background-color: silver;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding: 40px;
+}
+
+#results #title {
+  text-decoration: underline;
+  font-weight: bold;
+  color: black;
+}
+
+#results #snippet {
+  color: black;
+}
+
+#results a:hover {
+    text-decoration: none;
 }
